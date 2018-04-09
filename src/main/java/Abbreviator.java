@@ -7,14 +7,29 @@ A "word" is a sequence of alphabetical characters. By this definition, any other
 The abbreviated version of the word should have the first letter, then the number of removed characters, then the last letter (eg. "elephant ride" => "e6t r2e").
  */
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class Abbreviator {
 
-    public String abbreviate(String string){
+    public String abbreviate(String string) {
+        // split string into array with non-alphanumeric as own entries
+        // pass each element of array into abbreviateLongWords method and return combined string
 
-
-        return "";
+        String[] wordArray = string.split("(?<=[^a-zA-Z])|(?=[^a-zA-Z])");
+        return Arrays.stream(wordArray).map(x -> x.length() < 4 ? x : abbreviateWord(x)).collect(Collectors.joining());
     }
 
+    private String abbreviateWord(String word) {
+        StringBuilder abbreviatedWord = new StringBuilder();
+        char firstLetter = word.charAt(0);
+        char lastLetter = word.charAt(word.length() - 1);
+        int lettersAbbreviated = word.length() - 2;
 
+        abbreviatedWord.append(firstLetter);
+        abbreviatedWord.append(lettersAbbreviated);
+        abbreviatedWord.append(lastLetter);
 
+        return abbreviatedWord.toString();
+    }
 }
