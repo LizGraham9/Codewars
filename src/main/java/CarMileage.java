@@ -44,11 +44,75 @@ You should only ever output 0, 1, or 2.
 
  */
 
+import java.util.Arrays;
 
 public class CarMileage {
 
-    public static int isInteresting(int number, int[] awesomePhrases){
-
+    public static int isInteresting(int number, int[] awesomePhrases) {
+        if (isInterestingNumber(number, awesomePhrases)) return 2;
+        if (isAlmostInteresting(number, awesomePhrases)) return 1;
         return 0;
+    }
+
+    private static int[] intToDigits(int number) {
+        return Integer.toString(number).chars().map(Character::getNumericValue).toArray();
+    }
+
+    private static boolean isAlmostInteresting(int number, int[] awesomePhrases) {
+        int oneMileAhead = number + 1;
+        int twoMilesAhead = number + 2;
+        return isInterestingNumber(oneMileAhead, awesomePhrases) || isInterestingNumber(twoMilesAhead, awesomePhrases);
+    }
+
+    private static boolean isInterestingNumber(int number, int[] awesomePhrases) {
+        //run through all checks. return true if matches any
+        int[] digitSequence = intToDigits(number);
+        return allTrailingZeroes(digitSequence) || allSameNumber(digitSequence) || incrementsSequentially(digitSequence)
+                || decrementsSequentially(digitSequence) || isPalindrome(digitSequence) || isAwesomePhrase(number, awesomePhrases);
+    }
+
+    private static boolean allTrailingZeroes(int[] digitSequence) {
+        return Arrays.stream(digitSequence).skip(1).allMatch(x -> x == 0);
+    }
+
+    private static boolean allSameNumber(int[] digitSequence) {
+        int startNumber = digitSequence[0];
+        return Arrays.stream(digitSequence).allMatch(x -> x == startNumber);
+    }
+
+    private static boolean incrementsSequentially(int[] digitSequence) {
+//        1,234,567,890
+        for (int i = 1; i < digitSequence.length; i++) {
+            int previousNumber = digitSequence[i - 1];
+            int incrementedNumber = previousNumber == 9 ? 0 : previousNumber + 1;
+
+            if (digitSequence[i] != incrementedNumber) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean decrementsSequentially(int[] digitSequence) {
+//        9,876,543,210
+        for (int i = 1; i < digitSequence.length; i++) {
+            if (digitSequence[i] != digitSequence[i - 1] - 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean isPalindrome(int[] digitSequence) {
+        for (int i = 0; i < digitSequence.length / 2; i++) {
+            if (digitSequence[i] != digitSequence[digitSequence.length - i]) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isAwesomePhrase(int number, int[] awesomePhrases) {
+        return Arrays.stream(awesomePhrases).anyMatch(x -> x == number);
     }
 }
