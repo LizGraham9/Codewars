@@ -49,8 +49,10 @@ import java.util.Arrays;
 public class CarMileage {
 
     public static int isInteresting(int number, int[] awesomePhrases) {
+
         if (isInterestingNumber(number, awesomePhrases)) return 2;
         if (isAlmostInteresting(number, awesomePhrases)) return 1;
+
         return 0;
     }
 
@@ -66,6 +68,7 @@ public class CarMileage {
 
     private static boolean isInterestingNumber(int number, int[] awesomePhrases) {
         //run through all checks. return true if matches any
+        if (number < 100) return false;
         int[] digitSequence = intToDigits(number);
         return allTrailingZeroes(digitSequence) || allSameNumber(digitSequence) || incrementsSequentially(digitSequence)
                 || decrementsSequentially(digitSequence) || isPalindrome(digitSequence) || isAwesomePhrase(number, awesomePhrases);
@@ -105,11 +108,11 @@ public class CarMileage {
 
     private static boolean isPalindrome(int[] digitSequence) {
         for (int i = 0; i < digitSequence.length / 2; i++) {
-            if (digitSequence[i] != digitSequence[digitSequence.length - i]) {
+            if (digitSequence[i] != digitSequence[digitSequence.length - 1 - i]) {
                 return false;
             }
         }
-        return false;
+        return true;
     }
 
     private static boolean isAwesomePhrase(int number, int[] awesomePhrases) {
