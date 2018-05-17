@@ -1,7 +1,7 @@
 
 import java.util.Arrays;
 
-public class Kata {
+public class BiggerNumber2 {
 
     public static int findEvenIndex(int[] arr) {
         for (int i = 0; i < arr.length; i++) {

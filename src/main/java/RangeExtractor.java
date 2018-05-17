@@ -16,42 +16,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class RangeExtractor {
 
     public static String rangeExtraction(int[] arr) {
         int leftBound = 0;
         int rightBound = 0;
-        int rightBoundNeighbor;
         List<String> ranges = new ArrayList<>();
 
-        while (rightBound < arr.length - 1) {
-            rightBoundNeighbor = rightBound + 1;
-
-            if (arr[rightBoundNeighbor] != arr[rightBound] + 1 || rightBound == arr.length-1) {
+        while (rightBound < arr.length) {
+            if (sequenceEnds(rightBound, arr)) {
                 ranges.add(createRange(leftBound, rightBound, arr));
-                leftBound = rightBoundNeighbor;
+                leftBound = rightBound + 1;
             }
             rightBound++;
         }
         return ranges.stream().collect(Collectors.joining(","));
     }
 
+    private static boolean sequenceEnds(int rightBound, int[] arr) {
+        if (rightBound == arr.length - 1) {
+            return true;
+        }
+        return arr[rightBound + 1] != arr[rightBound] + 1;
+    }
 
     private static String createRange(int leftBound, int rightBound, int[] arr) {
         int rangeLength = rightBound - leftBound;
 
         String leftString = Integer.toString(arr[leftBound]);
         String rightString = Integer.toString(arr[rightBound]);
-        String joiner;
 
-        if (rangeLength == 0) {
-            return leftString;
-        }
-        if (rangeLength == 1) {
-            joiner = ",";
-        } else {
-            joiner = "-";
-        }
+        if (rangeLength == 0) return leftString;
+
+        String joiner = rangeLength == 1 ? "," : "-";
+
         return leftString + joiner + rightString;
     }
 }
