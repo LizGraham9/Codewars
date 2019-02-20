@@ -1,4 +1,5 @@
 /*
+https://www.codewars.com/kata/next-bigger-number-with-the-same-digits
 You have to create a function that takes a positive integer number and returns the next bigger number formed by the same digits:
 
 Kata.nextBiggerNumber(12)==21
@@ -17,27 +18,19 @@ public class BiggerNumber {
 
     public static long nextBiggerNumber(long n) {
         int[] digitArray = Long.toString(n).chars().map(Character::getNumericValue).toArray();
-        if (hasNoPivot(digitArray)) return -1;
-
         int pivot = findPivot(digitArray);
+        if (pivot < 0) return pivot;
         int nextHighestInTail = findNextHighestInTail(digitArray, pivot);
         digitArray = swapNumbers(digitArray, pivot, nextHighestInTail);
 
         return convertBackToLong(digitArray);
     }
 
-    private static boolean hasNoPivot(int[] digitArray) {
-        for (int i = digitArray.length - 1; i > 0; i--) {
-            if (digitArray[i - 1] < digitArray[i]) return false;
-        }
-        return true;
-    }
-
     private static int findPivot(int[] digitArray) {
         for (int i = digitArray.length - 1; i > 0; i--) {
             if (digitArray[i - 1] < digitArray[i]) return i - 1;
         }
-        return 0; //rewrite to throw exception
+        return -1;
     }
 
     private static int findNextHighestInTail(int[] digitArray, int pivot) {
