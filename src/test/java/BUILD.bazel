@@ -1,0 +1,5 @@
+java_test (
+    name = 'lib',
+    srcs = glob(['**/*.java']),
+    deps = []
+)

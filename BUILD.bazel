@@ -1,0 +1,12 @@
+java_library (
+    name = 'lib',
+    srcs = glob(['**/*.java']),
+)
+
+java_binary(
+    name = 'codewars',
+    main_class = 'CodeWarsApp',
+    runtime_deps = [
+        ':lib',
+    ],
+)

@@ -1,6 +1,6 @@
 .idea/
 target/
-build/
+BUILD.bazel/
 dist/
 out/
 *.iml
