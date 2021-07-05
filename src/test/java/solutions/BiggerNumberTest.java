@@ -1,10 +1,8 @@
 package solutions;// Test copied from codewars. NOT original work.
 
-import solutions.BiggerNumber;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.Assert.assertEquals;
 
 public class BiggerNumberTest {
     @Test

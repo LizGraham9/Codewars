@@ -1,5 +1,7 @@
 java_test (
-    name = 'lib',
+    name = 'ArrayCropperTest',
     srcs = glob(['**/*.java']),
-    deps = []
+    deps = [
+        "//src/main/java:lib",
+    ] 
 )

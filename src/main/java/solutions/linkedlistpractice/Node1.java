@@ -1,4 +1,4 @@
-package linkedlistpractice;
+package solutions.linkedlistpractice;
 
 public class Node1 {
     int data;

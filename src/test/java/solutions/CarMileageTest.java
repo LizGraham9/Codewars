@@ -1,7 +1,8 @@
 package solutions;// Test copied from codewars. NOT original work.
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class CarMileageTest {
 

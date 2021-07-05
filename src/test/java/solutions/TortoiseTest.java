@@ -1,15 +1,13 @@
 package solutions;// Test copied from codewars. NOT original work.
 
-import org.junit.jupiter.api.Test;
-import solutions.Tortoise;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 public class TortoiseTest {
 
     @Test
     public void raceTest() {
-
         System.out.println("Basic Tests");
         assertArrayEquals(new int[]{0, 32, 18}, Tortoise.race(720, 850, 70));
         assertArrayEquals(new int[]{3, 21, 49}, Tortoise.race(80, 91, 37));

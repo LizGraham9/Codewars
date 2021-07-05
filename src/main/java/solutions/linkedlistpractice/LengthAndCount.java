@@ -1,4 +1,4 @@
-package linkedlistpractice;
+package solutions.linkedlistpractice;
 
 public class LengthAndCount<T> {
 

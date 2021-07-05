@@ -1,9 +1,8 @@
 package solutions;// Test partially copied from codewars. NOT entirely original work.
 
-import org.junit.jupiter.api.Test;
-import solutions.RomanNumeralEncoder;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class RomanNumeralEncoderTest {
 
